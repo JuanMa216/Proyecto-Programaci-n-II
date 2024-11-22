@@ -1,0 +1,10 @@
+Cedula; Nombre; Código; Nombre Asignatura; Cantidad de Grupos;
+12345; Luis Eduardo; IS284; Programacion II; 2;
+12345; Luis Eduardo; IS105; Programacion I; 2;
+11111; Ricardo Laverde; IS284; Programacion I; 1;
+11111; Ricardo Laverde; IS105; Programacion II; 1;
+22344; Alvaro Morales; IS284; Programacion I; 1; 
+22344; Omar Trejos; IS105; Programacion I; 1;
+22344; Omar Trejos; IS284; Programacion II; 1;
+
+

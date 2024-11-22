@@ -1,0 +1,13 @@
+Código; Nombre Asignatura;
+BA100; Humanidades;
+CB1B3; Matematicas Fundamentales;
+IS142; DPL;
+IS105; Programacion I;
+IS193; Introduccion a la Informatica;
+BU101; Deportes I;
+CB242; Lab. Fisica I;
+CB234; Fisica I;
+CB2A3; Calculo Diferencial;
+CB223; Algebra Lineal;
+IS284; Programacion II;
+BU201; Deportes II;
