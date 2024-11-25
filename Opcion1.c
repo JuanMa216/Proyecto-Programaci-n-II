@@ -32,62 +32,6 @@ void Mostrar_Estudiantes () {
 fclose(fpTemporal);
 }
 
-/*
-// Función para mostrar los profesores
-void Mostrar_Profesores() {
-    FILE *fpTemporal = fopen("Asignaturas.txt", "r");
-
-    if (fpTemporal == NULL) {
-        printf("Error al abrir el archivo para la lectura.\n");
-        return;
-    }
-
-    char buffer[100];
-    int i = 0;
-
-    printf("Listado de Profesores:\n");
-    while (fgets(buffer, sizeof(buffer), fpTemporal)) {
-        if (!esLineaVacia(buffer)) {
-            i++;
-            if (i == 1)
-            {
-                continue;
-            }
-            // Procesar los tokens
-            char *campo = strtok(buffer, ";");
-            if (campo != NULL) {
-                printf("ID: %s ", campo);
-            }
-
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                printf("Nombre: %s ", campo);
-            }
-
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                printf("Codigo: %s ", campo);
-            }
-
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                printf("Asignatura: %s ", campo);
-            }
-
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                printf("Cantidad de grupos: %s\n", campo);
-            }
-
-        } else {
-        continue;
-        }
-    }
-
-    fclose(fpTemporal);
-}
-*/
-
 void Mostrar_Profesores() {
     FILE *fpTemporal = fopen("Profesores.txt", "r");
 

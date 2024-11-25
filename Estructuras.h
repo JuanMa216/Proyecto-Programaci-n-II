@@ -45,6 +45,6 @@ int esLineaVacia (const char *linea);
 int VerificarID_Materia (const char *code, const char *name);
 void Pause_Menu();
 void Mostrar_Profesores();
-void Crear_Grupo();
+void Crear_Grupo(); 
 
 #endif
