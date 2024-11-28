@@ -70,19 +70,21 @@ void MakeMenu(){
 
             if (strcmp(opc2, "1.1") == 0) {
                 printf("1.1 Crear perfil del profesor.\n");
-                // Funcion que lo haga
-
-                printf("  1.1.1 Editar datos\n");
+                makeTeacher(); //Funcion que crea los profesores
+                printf("\n  1.1.1 Editar datos\n");
                 printf("  1.1.2 Eliminar\n");
                 printf("  1.1.3 Listar profesores\n");
                 printf("Selecciona una subopción: ");
                 scanf("%s", opc2);
                 if (strcmp(opc2, "1.1.1") == 0) {
                     printf("1.1.1 Editar datos.\n");
+                    editData();
                 } else if (strcmp(opc2, "1.1.2") == 0) {
                     printf("1.1.2 Eliminar.\n");
+                    deleteTeacher();
                 } else if (strcmp(opc2, "1.1.3") == 0) {
-                    printf("1.1.3 Listar asignatura");
+                    printf("1.1.3 Listar Profesores\n");
+                    showTeachers();
                 }
 
             } else if (strcmp(opc2, "1.2") == 0) {
@@ -91,7 +93,7 @@ void MakeMenu(){
 
                 printf("  1.2.1 Editar datos\n");
                 printf("  1.2.2 Eliminar\n");
-                printf("  1.2.3 Listar asignatura\n");
+                printf("  1.2.3 Lista1r asignatura\n");
                 printf("Selecciona una subopción: ");
                 scanf("%s", opc2);
                 if (strcmp(opc2, "1.2.1") == 0) {
@@ -138,7 +140,7 @@ void MakeMenu(){
 
             } else if (strcmp(opc2, "1.5") == 0) {
                 printf("1.5 Asignar materia al estudiante.\n");
-                // Funcion que lo haga
+                //Funcion que lo haga
                 
                 printf("  1.5.1 Editar datos\n");
                 printf("  1.5.2 Eliminar\n");
