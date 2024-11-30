@@ -5,10 +5,12 @@
 void makeTeacher()
 {
     int n; 
+
     printf("\n¿Cuántos profesores desea ingresar? ");
     scanf("%i", &n);
 
     for (int i = 0; i < n; i++) {
+
         Profesor prof;
         int NumAsig;
 
@@ -22,7 +24,7 @@ void makeTeacher()
         }
 
         char line[256];
-        int encontrado = 0;
+        int found = 0;
 
         rewind(Professor); // Empezar desde el inicio 
         while (fgets(line, sizeof(line), Professor)) {
@@ -30,12 +32,12 @@ void makeTeacher()
             sscanf(line, "%d", &idRegistrado);
             if (idRegistrado == prof.idProfesor) {
                 printf("El profesor con ID %d ya se encuentra registrado.\n", prof.idProfesor);
-                encontrado = 1;
+                found = 1;
                 break;
             }
         }
 
-        if (!encontrado) {
+        if (!found) {
             printf("Ingrese el nombre del profesor: ");
             getchar(); 
             fgets(prof.nombre, sizeof(prof.nombre), stdin);
@@ -43,25 +45,16 @@ void makeTeacher()
 
             printf("Número de asignaturas que dicta el profesor: ");
             scanf("%i", &NumAsig);
+            getchar();
 
             for (int j = 1; j <= NumAsig; j++) {
-
-                getchar();
-                printf("Ingrese el código de la materia %i: ", j);
-                fgets(prof.codigo_materia, sizeof(prof.codigo_materia), stdin);
-                prof.codigo_materia[strcspn(prof.codigo_materia, "\n")] = '\0';
 
                 printf("Ingrese el nombre de la asignatura %i: ", j);
                 fgets(prof.nombre_asignatura, sizeof(prof.nombre_asignatura), stdin);
                 prof.nombre_asignatura[strcspn(prof.nombre_asignatura, "\n")] = '\0';
 
-                printf("Ingrese el número del grupo %i: ", j);
-                scanf("%i", &prof.Grupo);
-
-                fprintf(Professor, "%d;%s;%s;%s;%d\n", 
-                    prof.idProfesor, prof.nombre, 
-                    prof.codigo_materia, prof.nombre_asignatura, 
-                    prof.Grupo);
+                fprintf(Professor, "%d;%s;%s\n", 
+                    prof.idProfesor, prof.nombre, prof.nombre_asignatura);
                 printf("Registrado correctamente.\n\n", j);
 
             }
@@ -93,14 +86,16 @@ void editData() {
     }
 
     char line[256];
-    int encontrado = 0;
+    int found = 0;
 
     while (fgets(line, sizeof(line), Professor)) {
+
         int idRegistrado;
         sscanf(line, "%d", &idRegistrado);
 
         if (idRegistrado == ID) {
-            encontrado = 1;
+
+            found = 1;
 
             printf("Ingrese el nuevo nombre del profesor: ");
             getchar(); 
@@ -112,22 +107,14 @@ void editData() {
 
             for (int j = 1; j <= NumAsig; j++) {
                 getchar();
-                printf("\nIngrese el código de la materia %i: ", j);
-                fgets(prof.codigo_materia, sizeof(prof.codigo_materia), stdin);
-                prof.codigo_materia[strcspn(prof.codigo_materia, "\n")] = '\0';
-
                 printf("Ingrese el nombre de la asignatura %i: ", j);
                 fgets(prof.nombre_asignatura, sizeof(prof.nombre_asignatura), stdin);
                 prof.nombre_asignatura[strcspn(prof.nombre_asignatura, "\n")] = '\0';
 
-                printf("Ingrese el número del grupo %i: ", j);
-                scanf("%i", &prof.Grupo);
-
-                fprintf(TempFile, "%d;%s;%s;%s;%d\n", 
-                    ID, prof.nombre, prof.codigo_materia, prof.nombre_asignatura, prof.Grupo);
+                fprintf(TempFile, "%d;%s;%s\n", 
+                    ID, prof.nombre, prof.nombre_asignatura);
             }
         } else {
-
             fputs(line, TempFile);
         }
     }
@@ -139,7 +126,7 @@ void editData() {
     rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
            "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
 
-    if (encontrado) {
+    if (found) {
         printf("Los datos del profesor con ID %d han sido actualizados.\n", ID);
     } else {
         printf("No se encontró un profesor con el ID %d.\n", ID);
@@ -147,8 +134,9 @@ void editData() {
 }
 
 void deleteTeacher() {
+
     int ID;
-    int encontrado = 0;
+    int found = 0;
 
     printf("\nIngrese el ID del profesor que desea eliminar: ");
     scanf("%d", &ID);
@@ -169,11 +157,12 @@ void deleteTeacher() {
     char line[256];
 
     while (fgets(line, sizeof(line), Professor)) {
+        
         int idRegistrado;
         sscanf(line, "%d", &idRegistrado); 
 
         if (idRegistrado == ID) {
-            encontrado = 1; 
+            found = 1; 
             printf("Eliminando al profesor con ID %d.\n", ID);
             continue; 
         }
@@ -185,9 +174,10 @@ void deleteTeacher() {
     fclose(TempFile);
 
     remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
+    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
+                "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
 
-    if (encontrado) {
+    if (found) {
         printf("El profesor con ID %d ha sido eliminado exitosamente.\n", ID);
     } else {
         printf("No se encontró un profesor con el ID %d.\n", ID);
@@ -204,70 +194,111 @@ void showTeachers() {
         return;
     }
 
-    char buffer[100];
-    int i = 0;
-    Profesor profesor; 
+    char buffer[256];
+    Profesor prof;
 
     printf("Listado de Profesores:\n");
-    printf("+------------------------------------------------------------------------------------+\n");
-    printf("| %-5s | %-20s | %-10s | %-25s | %-10s |\n", "ID", "Nombre", "Codigo", "Asignatura", "Grupos");
-    printf("+------------------------------------------------------------------------------------+\n");
+    printf("+-------+----------------------+---------------------------+\n");
+    printf("| %-5s | %-20s | %-25s |\n", "ID", "Nombre", "Asignatura");
+    printf("+-------+----------------------+---------------------------+\n");
 
     while (fgets(buffer, sizeof(buffer), fpTemporal)) {
         if (!esLineaVacia(buffer)) {
-            i++;
-            if (i == 1) {
-                continue;
-            }
-
             char *campo;
 
             // Leer y almacenar el ID del profesor
             campo = strtok(buffer, ";");
             if (campo != NULL) {
-                profesor.idProfesor = atoi(campo);  // Convertir el string a entero
+                prof.idProfesor = atoi(campo); // Convertir a entero
             }
 
             // Leer y almacenar el nombre del profesor
             campo = strtok(NULL, ";");
             if (campo != NULL) {
-                strncpy(profesor.nombre, campo, sizeof(profesor.nombre) - 1);
-            }
-
-            // Leer y almacenar el código de la materia
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                // Aquí podrías almacenar el código de la materia en el array materias[],
-                // pero eso depende de cómo estés organizando las materias.
-                strcpy(profesor.codigo_materia, campo);  // Esto es solo un ejemplo
+                strncpy(prof.nombre, campo, sizeof(prof.nombre) - 1);
+                prof.nombre[sizeof(prof.nombre) - 1] = '\0';
+                prof.nombre[strcspn(prof.nombre, "\n")] = '\0'; // Remover salto de línea
             }
 
             // Leer y almacenar la asignatura
             campo = strtok(NULL, ";");
             if (campo != NULL) {
-                strcpy(profesor.nombre_asignatura, campo);  // Similar al código de la materia, si se desea
-            }
-
-            // Leer y almacenar el grupo
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                profesor.Grupo = atoi(campo);  // Convertir el string a entero
+                strncpy(prof.nombre_asignatura, campo, sizeof(prof.nombre_asignatura) - 1);
+                prof.nombre_asignatura[sizeof(prof.nombre_asignatura) - 1] = '\0';
+                prof.nombre_asignatura[strcspn(prof.nombre_asignatura, "\n")] = '\0'; // Remover salto de línea
             }
 
             // Imprimir los datos del profesor en formato de tabla
-            printf("| %-5d | %-20s | %-10s | %-25s | %-10d |\n", profesor.idProfesor, profesor.nombre, profesor.codigo_materia, profesor.nombre_asignatura, profesor.Grupo);
-        } else {
-            //printf("Línea %d está vacía.\n", i + 1);
-            continue;
+            printf("| %-5d | %-20s | %-25s |\n", prof.idProfesor, prof.nombre, prof.nombre_asignatura);
         }
     }
 
-    printf("+------------------------------------------------------------------------------------+\n");
+    printf("+-------+----------------------+---------------------------+\n");
 
     fclose(fpTemporal);
 }
 
+void makeSubject() {
 
+    int n;
+    printf("Ingrese el numero de materias que desea ingresar: ");
+    scanf("%i", &n);
+    getchar();
+
+    for (int i = 0; i < n; i++) {
+
+        Asignatura Asign;
+
+        printf("\nIngrese el codigo de la asignatura: ");
+        fgets(Asign.idAsignatura, sizeof(Asign.idAsignatura), stdin);
+        Asign.idAsignatura[strcspn(Asign.idAsignatura, "\n")] = '\0'; 
+
+        FILE *Asignaturas = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r+");
+        if (Asignaturas == NULL) {
+            printf("Error al abrir el archivo.\n");
+            return;
+        }
+
+        char line[256];
+        int found = 0;
+
+        rewind(Asignaturas); 
+        while (fgets(line, sizeof(line), Asignaturas)) {
+            char idRegistrado[20];
+            sscanf(line, "%[^;]", idRegistrado); 
+            if (strcmp(idRegistrado, Asign.idAsignatura) == 0) {
+                printf("La asignatura con el codigo %s ya se encuentra registrada.\n\n", Asign.idAsignatura);
+                found = 1;
+                break;
+            }
+
+        }
+
+        if (!found) {
+            
+            getchar(); 
+            printf("Ingrese el nombre de la asignatura: ");
+            fgets(Asign.nombre, sizeof(Asign.nombre), stdin);
+            Asign.nombre[strcspn(Asign.nombre, "\n")] = '\0'; 
+
+            printf("Ingrese la cantidad de creditos que tiene la asignatura: ");
+            scanf("%i", &Asign.creditos);
+            getchar(); 
+
+            if (Asign.creditos <= 0 || Asign.creditos > 5) {
+                printf("La cantidad de créditos debe ser mayor a 0 y menor o igual a 4. Registro cancelado.\n");
+                fclose(Asignaturas);
+                continue;
+            }
+
+            fprintf(Asignaturas, "%s;%s;%i\n", Asign.idAsignatura, Asign.nombre, Asign.creditos);
+            printf("Asignatura registrada correctamente.\n\n");
+
+        }
+
+        fclose(Asignaturas);
+    }
+}
 
 /*
 void Mostrar_Estudiantes () {
@@ -298,79 +329,6 @@ void Mostrar_Estudiantes () {
         }
     }
 fclose(fpTemporal);
-}
-
-void Mostrar_Profesores() {
-    FILE *fpTemporal = fopen("Profesores.txt", "r");
-
-    if (fpTemporal == NULL) {
-        printf("Error al abrir el archivo para la lectura.\n");
-        return;
-    }
-
-    char buffer[100];
-    int i = 0;
-    Profesor profesor;  // Declaración de la estructura
-
-    printf("Listado de Profesores:\n");
-    printf("-------------------------------------------------------------------------------\n");
-    printf("| %-5s | %-20s | %-10s | %-18s | %-10s |\n", "ID", "Nombre", "Codigo", "Asignatura", "Grupos");
-    printf("-------------------------------------------------------------------------------\n");
-
-    while (fgets(buffer, sizeof(buffer), fpTemporal)) {
-        if (!esLineaVacia(buffer)) {
-            i++;
-
-            if (i == 1) {
-                continue;
-            }
-
-            // Procesar los tokens
-            char *campo;
-
-            // Leer y almacenar el ID del profesor
-            campo = strtok(buffer, ";");
-            if (campo != NULL) {
-                profesor.idProfesor = atoi(campo);  // Convertir el string a entero
-            }
-
-            // Leer y almacenar el nombre del profesor
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                strncpy(profesor.nombre, campo, sizeof(profesor.nombre) - 1);
-            }
-
-            // Leer y almacenar el código de la materia
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                // Aquí podrías almacenar el código de la materia en el array materias[],
-                // pero eso depende de cómo estés organizando las materias.
-                strcpy(profesor.codigo_materia, campo);  // Esto es solo un ejemplo
-            }
-
-            // Leer y almacenar la asignatura
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                strcpy(profesor.nombre_asignatura, campo);  // Similar al código de la materia, si se desea
-            }
-
-            // Leer y almacenar el grupo
-            campo = strtok(NULL, ";");
-            if (campo != NULL) {
-                profesor.Grupo = atoi(campo);  // Convertir el string a entero
-            }
-
-            // Imprimir los datos del profesor en formato de tabla
-            printf("| %-5d | %-20s | %-10s | %-18s | %-10d |\n", profesor.idProfesor, profesor.nombre, profesor.codigo_materia, profesor.nombre_asignatura, profesor.Grupo);
-        } else {
-            //printf("Línea %d está vacía.\n", i + 1);
-            continue;
-        }
-    }
-
-    printf("-------------------------------------------------------------------------------\n");
-
-    fclose(fpTemporal);
 }
 
 void Crear_Grupo() {

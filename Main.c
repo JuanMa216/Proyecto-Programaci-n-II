@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "Estructuras.h"
 #include "Estructuras.c"
 #include "Opcion1.c"
 
 void MakeMenu(){
 
-    int opc = 0; // Variable to store user's main menu selection
-    char opc2[10]; // String to store sub-option selections
+    int opc = 0; 
+    char opc2[10]; 
 
     do {
 
@@ -70,7 +69,7 @@ void MakeMenu(){
 
             if (strcmp(opc2, "1.1") == 0) {
                 printf("1.1 Crear perfil del profesor.\n");
-                makeTeacher(); //Funcion que crea los profesores
+                makeTeacher(); 
                 printf("\n  1.1.1 Editar datos\n");
                 printf("  1.1.2 Eliminar\n");
                 printf("  1.1.3 Listar profesores\n");
@@ -89,8 +88,7 @@ void MakeMenu(){
 
             } else if (strcmp(opc2, "1.2") == 0) {
                 printf("1.2 Crear perfil de la asignatura.\n");
-                // Funcion que lo haga
-
+                makeSubject();
                 printf("  1.2.1 Editar datos\n");
                 printf("  1.2.2 Eliminar\n");
                 printf("  1.2.3 Lista1r asignatura\n");
@@ -101,7 +99,7 @@ void MakeMenu(){
                 } else if (strcmp(opc2, "1.2.2") == 0) {
                     printf("1.2.2 Eliminar.\n");
                 } else if (strcmp(opc2, "1.2.3") == 0) {
-                    printf("1.2.3 Listar profesores");
+                    printf("1.2.3 Listar asignatura");
                 }
                 
             } else if (strcmp(opc2, "1.3") == 0) {
@@ -158,6 +156,7 @@ void MakeMenu(){
             } else {
                 printf("Subopción inválida.\n");
             }
+            
         } else if (opc == 2) {
             printf("\n2. Docente\n");
             printf("  2.1 Crear actividades y sus porcentajes de la materia\n");
@@ -205,7 +204,6 @@ void MakeMenu(){
 
 }
 
-//Main.
 int main(){
 
     MakeMenu();
