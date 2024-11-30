@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "Estructuras.c"
 #include "Opcion1.c"
+#include "Opcion2.c"
 
 void MakeMenu(){
 
@@ -168,6 +169,7 @@ void MakeMenu(){
 
             if (strcmp(opc2, "2.1") == 0) {
                 printf("2.1 Crear actividades.\n");
+                Create_Activities();
                 // Funcion que lo haga
             } else if (strcmp(opc2, "2.2") == 0) {
                 printf("2.2 Crear notas para la actividad.\n");

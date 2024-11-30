@@ -34,6 +34,13 @@ typedef struct {
     char nombre_asignatura[30];     
 } Profesor;
 
+// Estructura para las actividades
+typedef struct {
+    int PorcentajeActividad;
+    char Nombre_Actividad[30];
+    char IdActividad[2];
+} Acvtividad;
+
 // Funciones declaradas
 int esLineaVacia (const char *linea);
 
