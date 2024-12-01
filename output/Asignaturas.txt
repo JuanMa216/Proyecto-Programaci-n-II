@@ -10,3 +10,4 @@ CB2A3; Calculo Diferencial;3
 CB223; Algebra Lineal;3
 IS284; Programacion II;4
 BU201; Deportes II;1
+IS200;Cafe y Barismo;2

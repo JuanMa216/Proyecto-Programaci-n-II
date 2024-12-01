@@ -7,3 +7,5 @@
 12734;Alvaro Morales;Programacion I
 16954;Lady Diaz;Matematicas Fundamentales
 16954;Lady Diaz;Calculo Diferencial
+9999;Miguel;Programacion I
+99999;Miguel;Programacion I

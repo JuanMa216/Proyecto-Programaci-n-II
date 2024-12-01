@@ -22,7 +22,7 @@ void makeTeacher()
         printf("\nIngrese el ID del docente: ");
         scanf("%i", &prof.idProfesor);
 
-        FILE *Professor = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt", "a+");
+        FILE *Professor = fopen("Profesores.txt", "a+");
         if (Professor == NULL) {
             printf("Error al abrir el archivo.\n");
             return;
@@ -80,13 +80,13 @@ void editData() {
     printf("\nIngrese el ID del docente que desea editar: ");
     scanf("%i", &ID);
 
-    FILE *Professor = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt", "r");
+    FILE *Professor = fopen("Profesores.txt", "r");
     if (Professor == NULL) {
         printf("Error al abrir el archivo.\n");
         return;
     }
 
-    FILE *TempFile = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "w");
+    FILE *TempFile = fopen("Temp.txt", "w");
     if (TempFile == NULL) {
         printf("Error al crear el archivo temporal.\n");
         fclose(Professor);
@@ -130,9 +130,8 @@ void editData() {
     fclose(Professor);
     fclose(TempFile);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
-           "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
+    remove("Profesores.txt");
+    rename("Temp.txt", "Profesores.txt");
 
     if (found) {
         printf("Los datos del profesor con ID %d han sido actualizados.\n", ID);
@@ -152,13 +151,13 @@ void deleteTeacher() {
     printf("\nIngrese el ID del profesor que desea eliminar: ");
     scanf("%d", &ID);
 
-    FILE *Professor = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt", "r");
+    FILE *Professor = fopen("Profesores.txt", "r");
     if (Professor == NULL) {
         printf("Error al abrir el archivo.\n");
         return;
     }
 
-    FILE *TempFile = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "w");
+    FILE *TempFile = fopen("Temp.txt", "w");
     if (TempFile == NULL) {
         printf("Error al crear el archivo temporal.\n");
         fclose(Professor);
@@ -184,9 +183,8 @@ void deleteTeacher() {
     fclose(Professor);
     fclose(TempFile);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
-                "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt");
+    remove("Profesores.txt");
+    rename("Temp.txt", "Profesores.txt");
 
     if (found) {
         printf("El profesor con ID %d ha sido eliminado exitosamente.\n", ID);
@@ -201,7 +199,7 @@ void deleteTeacher() {
 
 void showTeachers() {
 
-    FILE *fpTemporal = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt", "r");
+    FILE *fpTemporal = fopen("Profesores.txt", "r");
     if (fpTemporal == NULL) {
         printf("Error al abrir el archivo para la lectura.\n");
         return;
@@ -271,7 +269,7 @@ void makeSubject() {
         fgets(Asign.idAsignatura, sizeof(Asign.idAsignatura), stdin);
         Asign.idAsignatura[strcspn(Asign.idAsignatura, "\n")] = '\0'; 
 
-        FILE *Asignaturas = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r+");
+        FILE *Asignaturas = fopen("Asignaturas.txt", "r+");
         if (Asignaturas == NULL) {
             printf("Error al abrir el archivo.\n");
             return;
@@ -329,13 +327,13 @@ void editSubject(){
     printf("\nIngrese el codigo de la asignatura que desea editar: ");
     scanf("%s", idSubject);
 
-    FILE *Asignaturas = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r");
+    FILE *Asignaturas = fopen("Asignaturas.txt", "r");
     if (Asignaturas == NULL) {
         printf("Error al abrir el archivo.\n");
         return;
     }
 
-    FILE *TempFile = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "w");
+    FILE *TempFile = fopen("Temp.txt", "w");
     if (TempFile == NULL) {
         printf("Error al crear el archivo temporal.\n");
         fclose(Asignaturas);
@@ -378,9 +376,8 @@ void editSubject(){
     fclose(Asignaturas);
     fclose(TempFile);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
-           "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt");
+    remove("Asignaturas.txt");
+    rename("Temp.txt", "Asignaturas.txt");
 
     if (found) {
         printf("Los datos de la asignatura con codigo %s han sido actualizados.\n", idSubject);
@@ -400,13 +397,13 @@ void deleteSubject() {
     printf("\nIngrese el codigo de la asignatura que desea eliminar: ");
     scanf("%s", idSubject);
 
-    FILE *Asignaturas = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r");
+    FILE *Asignaturas = fopen("Asignaturas.txt", "r");
     if (Asignaturas == NULL) {
         printf("Error al abrir el archivo.\n");
         return;
     }
 
-    FILE *TempFile = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "w");
+    FILE *TempFile = fopen("Temp.txt", "w");
     if (TempFile == NULL) {
         printf("Error al crear el archivo temporal.\n");
         fclose(Asignaturas);
@@ -432,9 +429,8 @@ void deleteSubject() {
     fclose(TempFile);
 
     // Reemplazar el archivo original con el temporal
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
-           "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt");
+    remove("Asignaturas.txt");
+    rename("Temp.txt", "Asignaturas.txt");
 
     if (found) {
         printf("Los datos de la asignatura con codigo %s han sido eliminados.\n", idSubject);
@@ -449,7 +445,7 @@ void deleteSubject() {
 
 void showSubjects(){
 
-  FILE *fpTemporal = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r");
+  FILE *fpTemporal = fopen("Asignaturas.txt", "r");
     if (fpTemporal == NULL) {
         printf("Error al abrir el archivo para la lectura.\n");
         return;
@@ -514,20 +510,20 @@ void asignSubject() {
         printf("\nIngrese el ID del docente al que quiere asignar la asignatura: ");
         scanf("%i", &prof.idProfesor);
 
-        FILE *Professor = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt", "r");
+        FILE *Professor = fopen("Profesores.txt", "r");
         if (Professor == NULL) {
             printf("Error al abrir el archivo Profesores.txt.\n");
             return;
         }
 
-        FILE *Asignaturas = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r");
+        FILE *Asignaturas = fopen("Asignaturas.txt", "r");
         if (Asignaturas == NULL) {
             printf("Error al abrir el archivo Asignaturas.txt.\n");
             fclose(Professor);
             return;
         }
 
-        FILE *Asignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt", "a+");
+        FILE *Asignaciones = fopen("Asignaciones.txt", "a+");
         if (Asignaciones == NULL) {
             printf("Error al abrir el archivo Asignaciones.txt.\n");
             fclose(Professor);
@@ -624,13 +620,13 @@ void asignSubject() {
 
 void editAsign() {
 
-    FILE *Professor = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Profesores.txt", "r");
+    FILE *Professor = fopen("Profesores.txt", "r");
     if (Professor == NULL) {
         printf("Error al abrir el archivo Profesores.txt.\n");
         return;
     }
 
-    FILE *Asignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt", "r+");
+    FILE *Asignaciones = fopen("Asignaciones.txt", "r+");
     if (Asignaciones == NULL) {
         printf("Error al abrir el archivo Asignaciones.txt.\n");
         fclose(Professor);
@@ -707,8 +703,8 @@ void editAsign() {
     fclose(Asignaciones);
     fclose(temp);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt");
-    rename("temp.txt", "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt");
+    remove("Asignaciones.txt");
+    rename("temp.txt", "Asignaciones.txt");
 
 }
 
@@ -717,7 +713,7 @@ void editAsign() {
 
 void deleteAsign() {
 
-    FILE *Asignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt", "r");
+    FILE *Asignaciones = fopen("Asignaciones.txt", "r");
     if (Asignaciones == NULL) {
         printf("Error al abrir el archivo Asignaciones.txt.\n");
         return;
@@ -758,14 +754,14 @@ void deleteAsign() {
 
     fclose(Asignaciones);
     fclose(temp);
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt");
-    rename("temp.txt", "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt");
+    remove("Asignaciones.txt");
+    rename("temp.txt", "Asignaciones.txt");
 }
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //1.3.3
 void showAsigns(){
-    FILE *fpAsignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaciones.txt", "r");
+    FILE *fpAsignaciones = fopen("Asignaciones.txt", "r");
     if (fpAsignaciones == NULL) {
         printf("Error al abrir el archivo Asignaciones.txt.\n");
         return;
@@ -810,7 +806,7 @@ void makeStudent(){
         printf("\nIngrese el ID del estudiante: ");
         scanf("%i", &student.idEstudiante);
 
-        FILE *Estudiantees = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt", "a+");
+        FILE *Estudiantees = fopen("Estudiantes.txt", "a+");
         if (Estudiantees == NULL) {
             printf("Error al abrir el archivo.\n");
             return;
@@ -859,13 +855,13 @@ void editEstudent() {
     printf("\nIngrese el ID del estudiante que desea editar: ");
     scanf("%i", &student.idEstudiante);
 
-    FILE *Estudiantes = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt", "r");
+    FILE *Estudiantes = fopen("Estudiantes.txt", "r");
     if (Estudiantes == NULL) {
         printf("Error al abrir el archivo.\n");
         return;
     }
 
-    FILE *TempFile = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "w");
+    FILE *TempFile = fopen("Temp.txt", "w");
     if (TempFile == NULL) {
         printf("Error al crear el archivo temporal.\n");
         fclose(Estudiantes);
@@ -903,9 +899,8 @@ void editEstudent() {
     fclose(Estudiantes);
     fclose(TempFile);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
-           "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt");
+    remove("Estudiantes.txt");
+    rename("Temp.txt", "Estudiantes.txt");
 
     if (found) {
         printf("Los datos del profesor con ID %d han sido actualizados.\n", student.idEstudiante);
@@ -925,13 +920,13 @@ void deleteStudent(){
     printf("\nIngrese el ID del profesor que desea eliminar: ");
     scanf("%d", &ID);
 
-    FILE *Estudiantes = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt", "r");
+    FILE *Estudiantes = fopen("Estudiantes.txt", "r");
     if (Estudiantes == NULL) {
         printf("Error al abrir el archivo.\n");
         return;
     }
 
-    FILE *TempFile = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", "w");
+    FILE *TempFile = fopen("Temp.txt", "w");
     if (TempFile == NULL) {
         printf("Error al crear el archivo temporal.\n");
         fclose(Estudiantes);
@@ -957,9 +952,8 @@ void deleteStudent(){
     fclose(Estudiantes);
     fclose(TempFile);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt");
-    rename("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Temp.txt", 
-                "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt");
+    remove("Estudiantes.txt");
+    rename("Temp.txt", "Estudiantes.txt");
 
     if (found) {
         printf("El Estudiante con ID %d ha sido eliminado exitosamente.\n", ID);
@@ -973,7 +967,7 @@ void deleteStudent(){
 //1.4.3
 
 void showEstudents() {
-    FILE *fpTemporal = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt", "r");
+    FILE *fpTemporal = fopen("Estudiantes.txt", "r");
     if (fpTemporal == NULL) {
         printf("Error al abrir el archivo para la lectura.\n");
         return;
@@ -1043,20 +1037,20 @@ void asignStudent() {
         printf("\nIngrese el ID del estudiante al que quiere asignar la asignatura: ");
         scanf("%i", &student.idEstudiante);
 
-        FILE *Estudiantes = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt", "r");
+        FILE *Estudiantes = fopen("Estudiantes.txt", "r");
         if (Estudiantes == NULL) {
             printf("Error al abrir el archivo Profesores.txt.\n");
             return;
         }
 
-        FILE *Asignaturas = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Asignaturas.txt", "r");
+        FILE *Asignaturas = fopen("Asignaturas.txt", "r");
         if (Asignaturas == NULL) {
             printf("Error al abrir el archivo Asignaturas.txt.\n");
             fclose(Estudiantes);
             return;
         }
 
-        FILE *Asignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt", "a+");
+        FILE *Asignaciones = fopen("AsignacionesEstudiantes.txt", "a+");
         if (Asignaciones == NULL) {
             printf("Error al abrir el archivo Asignaciones.txt.\n");
             fclose(Estudiantes);
@@ -1152,13 +1146,13 @@ void asignStudent() {
 
 void editAsignStudent() {
 
-    FILE *Estudiantes = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\Estudiantes.txt", "r");
+    FILE *Estudiantes = fopen("Estudiantes.txt", "r");
     if (Estudiantes == NULL) {
         printf("Error al abrir el archivo Profesores.txt.\n");
         return;
     }
 
-    FILE *Asignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt", "r+");
+    FILE *Asignaciones = fopen("AsignacionesEstudiantes.txt", "r+");
     if (Asignaciones == NULL) {
         printf("Error al abrir el archivo Asignaciones.txt.\n");
         fclose(Estudiantes);
@@ -1234,8 +1228,8 @@ void editAsignStudent() {
     fclose(Asignaciones);
     fclose(temp);
 
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt");
-    rename("temp.txt", "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt");
+    remove("AsignacionesEstudiantes.txt");
+    rename("temp.txt", "AsignacionesEstudiantes.txt");
 
 }
 
@@ -1244,7 +1238,7 @@ void editAsignStudent() {
 
 void deleteAsignStudent() {
 
-    FILE *Asignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt", "r");
+    FILE *Asignaciones = fopen("AsignacionesEstudiantes.txt", "r");
     if (Asignaciones == NULL) {
         printf("Error al abrir el archivo Asignaciones.txt.\n");
         return;
@@ -1285,8 +1279,8 @@ void deleteAsignStudent() {
 
     fclose(Asignaciones);
     fclose(temp);
-    remove("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt");
-    rename("temp.txt", "C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt");
+    remove("AsignacionesEstudiantes.txt");
+    rename("temp.txt", "AsignacionesEstudiantes.txt");
 
 }
 
@@ -1294,7 +1288,7 @@ void deleteAsignStudent() {
 //1.5.3
 void showAsignStudents(){
 
-    FILE *fpAsignaciones = fopen("C:\\Users\\julia\\OneDrive\\Documentos\\GitHub\\Proyecto-Programaci-n-II\\output\\AsignacionesEstudiantes.txt", "r");
+    FILE *fpAsignaciones = fopen("AsignacionesEstudiantes.txt", "r");
     if (fpAsignaciones == NULL) {
         printf("Error al abrir el archivo Asignaciones.txt.\n");
         return;

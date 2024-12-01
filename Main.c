@@ -70,7 +70,8 @@ void MakeMenu(){
             if (strcmp(opc2, "1.1") == 0) {
                 printf("1.1 Crear perfil del profesor.\n");
                 makeTeacher(); 
-                printf("\n  1.1.1 Editar datos\n");
+                printf("\n0. Volver al menu principal.\n");
+                printf("  1.1.1 Editar datos\n");
                 printf("  1.1.2 Eliminar\n");
                 printf("  1.1.3 Listar profesores\n");
                 printf("Selecciona una subopción: ");
@@ -84,12 +85,18 @@ void MakeMenu(){
                 } else if (strcmp(opc2, "1.1.3") == 0) {
                     printf("1.1.3 Listar Profesores\n");
                     showTeachers();
+                } else if (strcmp (opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
                 }
 
             } else if (strcmp(opc2, "1.2") == 0) {
                 printf("1.2 Crear perfil de la asignatura.\n");
                 makeSubject();
-                printf("\n  1.2.1 Editar datos\n");
+                printf("\n0. Volver al menu principal\n");
+                printf("  1.2.1 Editar datos\n");
                 printf("  1.2.2 Eliminar\n");
                 printf("  1.2.3 Lista1r asignatura\n");
                 printf("Selecciona una subopción: ");
@@ -103,11 +110,17 @@ void MakeMenu(){
                 } else if (strcmp(opc2, "1.2.3") == 0) {
                     printf("1.2.3 Listar asignatura");
                     showSubjects();
+                } else if (strcmp(opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
                 }
                 
             } else if (strcmp(opc2, "1.3") == 0) {
                 printf("1.3 Asignar materia al profesor.\n");
                 asignSubject();
+                printf("\n0. Volver al menu principal.\n");
                 printf("  1.3.1 Editar datos\n");
                 printf("  1.3.2 Eliminar\n");
                 printf("  1.3.3 Listar asignatura y su profesor\n");
@@ -122,11 +135,17 @@ void MakeMenu(){
                 } else if (strcmp(opc2, "1.3.3") == 0) {
                     printf("1.3.3 Listar asignatura y su profesor");
                     showAsigns();
+                } else if (strcmp(opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
                 }
 
             } else if (strcmp(opc2, "1.4") == 0) {
                 printf("1.4 Crear perfil estudiante.\n");
                 makeStudent();
+                printf("\n0. Volver al menu principal\n");
                 printf("  1.4.1 Editar datos\n");
                 printf("  1.4.2 Eliminar\n");
                 printf("  1.4.3 Listar estudiantes\n");
@@ -141,11 +160,17 @@ void MakeMenu(){
                 } else if (strcmp(opc2, "1.4.3") == 0) {
                     printf("1.4.3 Listar estudiantes");
                     showEstudents();
+                } else if (strcmp(opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
                 }
 
             } else if (strcmp(opc2, "1.5") == 0) {
                 printf("1.5 Asignar materia al estudiante.\n");
                 asignStudent();
+                printf("\n 0. Volver al menu principal\n");
                 printf("  1.5.1 Editar datos\n");
                 printf("  1.5.2 Eliminar\n");
                 printf("  1.5.3 Listar asignatura y sus estudiantes\n");
@@ -160,6 +185,11 @@ void MakeMenu(){
                 } else if (strcmp(opc2, "1.5.3") == 0) {
                     printf("1.5.3 Listar asignatura y sus estudiantes");
                     showAsignStudents();
+                } else if (strcmp(opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
                 }
 
             } else {
