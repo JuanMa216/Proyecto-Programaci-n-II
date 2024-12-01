@@ -1,26 +1,23 @@
-
-Jean Carlo Aguirre Valencia; 
-Juan Esteban Albaran Gutierrez;
-Miguel Angel Amaya Alvarez;
-Martin Barrero;
-Nicolas Botero;
-Juan Fernando Bustos;
-Juan Camilo Castano;
-Nicolas Giraldo Jimenez;
-Maria Jose Herrea;
-Santiago Mejia;
-Sebastian Osorio Londono;
-Kelly Palacio Marulanda;
-Sergio Parada;
-Santiago Penilla Ramirez;
-Sebastian Penuela Rivera;
-David Quintero Pera;
-Georlan Ramirez Arias;
-Julian Rivera Sanchez;
-Bryan Andres Rodas;
-Juan Manuel Rojas;
-Juan Jose Santofinio;
-Julian Andres Villada;
-Juan Fernando Zapata;
-
-
+19373;Jean Carlo Aguirre Valencia;2
+16554;Juan Esteban Albaran Gutierrez;2
+12545;Miguel Angel Amaya Alvarez;2
+14354;Martin Barrero;2
+12565;Nicolas Botero;2
+10255;Juan Fernando Bustos;2
+13545;Juan Camilo Castano;2
+10055;Nicolas Giraldo Jimenez;2
+16574;Maria Jose Herrea;2
+13167;Santiago Mejia;2
+10465;Sebastian Osorio Londono;2
+13015;Kelly Palacio Marulanda;2
+10465;Sergio Parada;2
+13467;Santiago Penilla Ramirez;2
+10460;Sebastian Penuela Rivera;2
+10302;David Quintero Pera;2
+16450;Georlan Ramirez Arias;2
+19023;Julian Rivera Sanchez;2
+10900;Bryan Andres Rodas;2
+10394;Juan Manuel Rojas;2
+16002;Juan Jose Santofinio;2
+10036;Julian Andres Villada;2
+10404;Juan Fernando Zapata;2

@@ -4,7 +4,6 @@
 #include <ctype.h>
 #include "Estructuras.c"
 #include "Opcion1.c"
-#include "Opcion2.c"
 
 void MakeMenu(){
 
@@ -90,23 +89,25 @@ void MakeMenu(){
             } else if (strcmp(opc2, "1.2") == 0) {
                 printf("1.2 Crear perfil de la asignatura.\n");
                 makeSubject();
-                printf("  1.2.1 Editar datos\n");
+                printf("\n  1.2.1 Editar datos\n");
                 printf("  1.2.2 Eliminar\n");
                 printf("  1.2.3 Lista1r asignatura\n");
                 printf("Selecciona una subopción: ");
                 scanf("%s", opc2);
                 if (strcmp(opc2, "1.2.1") == 0) {
                     printf("1.2.1 Editar datos.\n");
+                    editSubject();
                 } else if (strcmp(opc2, "1.2.2") == 0) {
                     printf("1.2.2 Eliminar.\n");
+                    deleteSubject();
                 } else if (strcmp(opc2, "1.2.3") == 0) {
                     printf("1.2.3 Listar asignatura");
+                    showSubjects();
                 }
                 
             } else if (strcmp(opc2, "1.3") == 0) {
                 printf("1.3 Asignar materia al profesor.\n");
-                // Funcion que lo haga
-
+                asignSubject();
                 printf("  1.3.1 Editar datos\n");
                 printf("  1.3.2 Eliminar\n");
                 printf("  1.3.3 Listar asignatura y su profesor\n");
@@ -114,16 +115,18 @@ void MakeMenu(){
                 scanf("%s", opc2);
                 if (strcmp(opc2, "1.3.1") == 0) {
                     printf("1.3.1 Editar datos.\n");
+                    editAsign();
                 } else if (strcmp(opc2, "1.3.2") == 0) {
                     printf("1.3.2 Eliminar.\n");
+                    deleteAsign();
                 } else if (strcmp(opc2, "1.3.3") == 0) {
                     printf("1.3.3 Listar asignatura y su profesor");
+                    showAsigns();
                 }
 
             } else if (strcmp(opc2, "1.4") == 0) {
                 printf("1.4 Crear perfil estudiante.\n");
-                // Funcion que lo haga
-
+                makeStudent();
                 printf("  1.4.1 Editar datos\n");
                 printf("  1.4.2 Eliminar\n");
                 printf("  1.4.3 Listar estudiantes\n");
@@ -131,16 +134,18 @@ void MakeMenu(){
                 scanf("%s", opc2);
                 if (strcmp(opc2, "1.4.1") == 0) {
                     printf("1.4.1 Editar datos.\n");
+                    editEstudent();
                 } else if (strcmp(opc2, "1.4.2") == 0) {
                     printf("1.4.2 Eliminar.\n");
+                    deleteStudent();
                 } else if (strcmp(opc2, "1.4.3") == 0) {
                     printf("1.4.3 Listar estudiantes");
+                    showEstudents();
                 }
 
             } else if (strcmp(opc2, "1.5") == 0) {
                 printf("1.5 Asignar materia al estudiante.\n");
-                //Funcion que lo haga
-                
+                asignStudent();
                 printf("  1.5.1 Editar datos\n");
                 printf("  1.5.2 Eliminar\n");
                 printf("  1.5.3 Listar asignatura y sus estudiantes\n");
@@ -148,10 +153,13 @@ void MakeMenu(){
                 scanf("%s", opc2);
                 if (strcmp(opc2, "1.5.1") == 0) {
                     printf("1.5.1 Editar datos.\n");
+                    editAsignStudent();
                 } else if (strcmp(opc2, "1.5.2") == 0) {
                     printf("1.5.2 Eliminar.\n");
+                    deleteAsignStudent();
                 } else if (strcmp(opc2, "1.5.3") == 0) {
                     printf("1.5.3 Listar asignatura y sus estudiantes");
+                    showAsignStudents();
                 }
 
             } else {
@@ -169,7 +177,6 @@ void MakeMenu(){
 
             if (strcmp(opc2, "2.1") == 0) {
                 printf("2.1 Crear actividades.\n");
-                Create_Activities();
                 // Funcion que lo haga
             } else if (strcmp(opc2, "2.2") == 0) {
                 printf("2.2 Crear notas para la actividad.\n");

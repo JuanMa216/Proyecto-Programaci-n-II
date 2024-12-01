@@ -22,7 +22,8 @@ typedef struct {
 // Estructura para los estudiantes
 typedef struct {
     int idEstudiante;      
-    char nombre[30];       
+    char nombre[40];
+    int semestre;       
     Nota notas[12];
     int numNotas;          
 } Estudiante;
@@ -33,13 +34,6 @@ typedef struct {
     char nombre[30];    
     char nombre_asignatura[30];     
 } Profesor;
-
-// Estructura para las actividades
-typedef struct {
-    int PorcentajeActividad;
-    char Nombre_Actividad[30];
-    char IdActividad[2];
-} Acvtividad;
 
 // Funciones declaradas
 int esLineaVacia (const char *linea);
