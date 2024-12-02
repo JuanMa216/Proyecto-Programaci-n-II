@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "Estructuras.c"
 #include "Opcion1.c"
+#include "Opcion2.c"
 
 void MakeMenu(){
 
@@ -207,7 +208,28 @@ void MakeMenu(){
 
             if (strcmp(opc2, "2.1") == 0) {
                 printf("2.1 Crear actividades.\n");
-                // Funcion que lo haga
+                createActivities();
+                printf("\n0. Volver al menu principal.\n");
+                printf("  2.1.1 Editar datos\n");
+                printf("  2.1.2 Eliminar\n");
+                printf("  2.1.3 Listar asignatura y su profesor\n");
+                printf("Selecciona una subopción: ");
+                scanf("%s", opc2);
+                if (strcmp(opc2, "1.3.1") == 0) {
+                    printf("2.1.1 Editar actividad.\n");
+
+                } else if (strcmp(opc2, "1.3.2") == 0) {
+                    printf("2.1.2 Eliminar actividad\n");
+
+                } else if (strcmp(opc2, "1.3.3") == 0) {
+                    printf("2.1.3 Listar actividades");
+
+                } else if (strcmp(opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
+                }
             } else if (strcmp(opc2, "2.2") == 0) {
                 printf("2.2 Crear notas para la actividad.\n");
                 // Funcion que lo haga

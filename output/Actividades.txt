@@ -1,8 +1,0 @@
-A;Parcial;30
-12345;A;Parcial I;20
-12345;A;Parcial II;20
-12345;A;Parcial III;20
-12345;A;Parcial I;30
-12345;A;Parcial II;20
-12345;B;Parcial III;20
-12345;C;Parcial IV;30

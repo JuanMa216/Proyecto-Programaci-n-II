@@ -35,6 +35,12 @@ typedef struct {
     char nombre_asignatura[30];     
 } Profesor;
 
+typedef struct {
+    int PorcentajeActividad;
+    char nombre[30];
+    char IdActividad[2];
+} Acvtividad;
+
 // Funciones declaradas
 int esLineaVacia (const char *linea);
 

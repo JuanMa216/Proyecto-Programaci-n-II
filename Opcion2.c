@@ -2,104 +2,102 @@
 #include <string.h>
 #include "Estructuras.h"
 
-void Create_Activities() {
+void createActivities() {
     Profesor prof;
-    Acvtividad act;
-    char existingNames[100][30];  // Para almacenar nombres de actividades ya ingresados
-    int totalPercentage = 0, activityCount = 0;
+    int n;
 
     // Solicitar el ID del profesor
-    printf("Ingrese el ID del docente: ");
-    scanf("%i", &prof.idProfesor);
+    printf("\nIngrese el ID del profesor: ");
+    scanf("%d", &prof.idProfesor);
+    getchar();
 
-    // Abrir archivo de profesores para validar el ID
-    FILE *professorsFile = fopen("Profesores.txt", "r");
-    if (professorsFile == NULL) {
-        printf("Error al abrir el archivo de profesores.\n");
+    // Verificar si el profesor existe en Profesores.txt
+    FILE *Profesores = fopen("Profesores.txt", "r");
+    if (Profesores == NULL) {
+        printf("Error al abrir el archivo Profesores.txt.\n");
         return;
     }
 
-    char buffer[256];
+    char line[256];
     int found = 0;
 
-    // Validar que el profesor exista
-    while (fgets(buffer, sizeof(buffer), professorsFile)) {
-        int idFromFile;
-        sscanf(buffer, "%d", &idFromFile);
-        if (idFromFile == prof.idProfesor) {
-            printf("Profesor encontrado.\n");
+    while (fgets(line, sizeof(line), Profesores)) {
+        int idRegistrado;
+        char nombreProfesor[50];
+        sscanf(line, "%d;%49[^\n]", &idRegistrado, nombreProfesor);
+
+        if (idRegistrado == prof.idProfesor) {
             found = 1;
+            strcpy(prof.nombre, nombreProfesor);
             break;
         }
     }
-    fclose(professorsFile);
+    fclose(Profesores);
 
     if (!found) {
         printf("El profesor con ID %d no está registrado.\n", prof.idProfesor);
         return;
     }
 
-    // Abrir archivo de actividades para escritura
-    FILE *activitiesFile = fopen("Actividades.txt", "a");
-    if (activitiesFile == NULL) {
-        printf("Error al abrir el archivo de actividades.\n");
+    printf("Profesor encontrado: %s (ID: %d)\n", prof.nombre, prof.idProfesor);
+
+    // Solicitar el número de actividades que desea crear
+    printf("\nIngrese el número de actividades que desea ingresar: ");
+    scanf("%d", &n);
+    getchar();
+
+    FILE *Actividades = fopen("Actividades.txt", "a+");
+    if (Actividades == NULL) {
+        printf("Error al abrir el archivo Actividades.txt.\n");
         return;
     }
 
-    // Crear actividades hasta que el porcentaje alcance 100%
-    while (totalPercentage < 100) {
-        printf("\n=== Nueva Actividad ===\n");
+    for (int i = 0; i < n; i++) {
 
-        // Ingresar ID de la actividad
-        printf("Ingrese el ID de la actividad (un carácter): ");
-        scanf("%1s", act.IdActividad);
-        getchar();  // Limpiar el buffer
+        Acvtividad Activ;
+        int foundActividad = 0;
 
-        // Ingresar nombre de la actividad y validar que sea único
-        int nameIsUnique = 0;
-        while (!nameIsUnique) {
-            printf("Ingrese el nombre de la actividad: ");
-            fgets(act.Nombre_Actividad, sizeof(act.Nombre_Actividad), stdin);
-            act.Nombre_Actividad[strcspn(act.Nombre_Actividad, "\n")] = '\0';  // Eliminar salto de línea
+        printf("\nIngrese el código de la actividad: ");
+        fgets(Activ.IdActividad, sizeof(Activ.IdActividad), stdin);
+        Activ.IdActividad[strcspn(Activ.IdActividad, "\n")] = '\0';
 
-            // Verificar que el nombre no esté repetido
-            nameIsUnique = 1;
-            for (int i = 0; i < activityCount; i++) {
-                if (strcmp(existingNames[i], act.Nombre_Actividad) == 0) {
-                    printf("El nombre de la actividad ya existe. Intente con otro.\n");
-                    nameIsUnique = 0;
-                    break;
-                }
+        rewind(Actividades);
+        while (fgets(line, sizeof(line), Actividades)) {
+            char idRegistrado[20];
+            sscanf(line, "%[^;]", idRegistrado);
+
+            if (strcmp(idRegistrado, Activ.IdActividad) == 0) {
+                printf("La actividad con el código %s ya está registrada.\n\n", Activ.IdActividad);
+                foundActividad = 1;
+                break;
             }
         }
 
-        // Almacenar el nombre como ya utilizado
-        strcpy(existingNames[activityCount], act.Nombre_Actividad);
+        if (foundActividad) {
+            continue;
+        }
 
-        // Ingresar porcentaje de la actividad
-        int porcentajeValido = 0;
-        do {
-            printf("Ingrese el porcentaje de la actividad (restante: %d%%): ", 100 - totalPercentage);
-            scanf("%i", &act.PorcentajeActividad);
+        printf("Ingrese el nombre de la actividad: ");
+        fgets(Activ.nombre, sizeof(Activ.nombre), stdin);
+        Activ.nombre[strcspn(Activ.nombre, "\n")] = '\0';
 
-            if (act.PorcentajeActividad < 0 || act.PorcentajeActividad > (100 - totalPercentage)) {
-                printf("Porcentaje inválido. Debe estar entre 0 y %d.\n", 100 - totalPercentage);
-            } else {
-                porcentajeValido = 1;
-                totalPercentage += act.PorcentajeActividad;
-            }
-        } while (!porcentajeValido);
+        printf("Ingrese el porcentaje de la actividad: ");
+        scanf("%d", &Activ.PorcentajeActividad);
+        getchar();
 
-        // Escribir la actividad en el archivo
-        fprintf(activitiesFile, "%d;%s;%s;%d\n", prof.idProfesor, act.IdActividad, act.Nombre_Actividad, act.PorcentajeActividad);
-        printf("Actividad creada correctamente.\n");
+        if (Activ.PorcentajeActividad <= 0 || Activ.PorcentajeActividad > 100) {
+            printf("El porcentaje debe ser mayor a 0 y menor o igual a 100. Registro cancelado.\n");
+            continue;
+        }
 
-        activityCount++;
+        // Registrar la actividad asociada al profesor
+        fprintf(Actividades, "%s;%s;%d;%d;%s\n",
+                Activ.IdActividad, Activ.nombre,
+                Activ.PorcentajeActividad, prof.idProfesor, prof.nombre);
+
+        printf("Actividad '%s' (código: %s) registrada correctamente para el profesor '%s' (ID: %d).\n",
+               Activ.nombre, Activ.IdActividad, prof.nombre, prof.idProfesor);
     }
 
-    printf("\n¡Se han creado todas las actividades! El porcentaje total es 100%%.\n");
-
-    fclose(activitiesFile);
+    fclose(Actividades);
 }
-
-   
