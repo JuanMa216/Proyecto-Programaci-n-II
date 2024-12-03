@@ -14,7 +14,7 @@ void MakeMenu(){
     do {
 
         printf("\n-----------------------------------------------------Menú del Proyecto-----------------------------------------------------\n");
-        printf("1. Administrador\n");
+        printf("\n1. Administrador\n");
         printf("   1.1 Crear perfil del profesor\n");
         printf("       1.1.1 Editar datos\n");
         printf("       1.1.2 Eliminar\n");
@@ -43,11 +43,10 @@ void MakeMenu(){
         printf("   2.2 Crear notas para la actividad\n");
         printf("       2.2.1 Modificar notas\n");
         printf("       2.2.2 Eliminar notas\n");
-        printf("   2.3 Listar estudiantes\n");
-        printf("   2.4 Mostrar notas de todos los estudiantes\n");
+        printf("   2.3 Mostrar notas de todos los estudiantes\n");
         printf("3. Estudiante\n");
         printf("   3.1 Mostrar todas las notas\n");
-        printf("   3.2 Mostrar notas de una materia específica\n");
+        printf("   3.2 Mostrar n  otas de una materia específica\n");
         printf("\n\nTener en cuenta:\n");
         printf("- Que las notas van de 0.0 a 5.0.\n");
         printf("- Las cédulas no se repiten.\n");
@@ -201,8 +200,7 @@ void MakeMenu(){
             printf("\n2. Docente\n");
             printf("  2.1 Crear actividades y sus porcentajes de la materia\n");
             printf("  2.2 Crear notas para la actividad\n");
-            printf("  2.3 Listar estudiantes\n");
-            printf("  2.4 Mostrar notas de todos los estudiantes\n");
+            printf("  2.3 Mostrar notas de todos los estudiantes\n");
             printf("Selecciona una subopción: ");
             scanf("%s", opc2);
 
@@ -215,15 +213,15 @@ void MakeMenu(){
                 printf("  2.1.3 Listar asignatura y su profesor\n");
                 printf("Selecciona una subopción: ");
                 scanf("%s", opc2);
-                if (strcmp(opc2, "1.3.1") == 0) {
+                if (strcmp(opc2, "2.1.1") == 0) {
                     printf("2.1.1 Editar actividad.\n");
-
-                } else if (strcmp(opc2, "1.3.2") == 0) {
+                    editActivities();
+                } else if (strcmp(opc2, "2.1.2") == 0) {
                     printf("2.1.2 Eliminar actividad\n");
-
-                } else if (strcmp(opc2, "1.3.3") == 0) {
+                    deleteActivity();
+                } else if (strcmp(opc2, "2.1.3") == 0) {
                     printf("2.1.3 Listar actividades");
-
+                    showActivities();
                 } else if (strcmp(opc2, "0") == 0) {
                     printf("Volver al menu principal.\n");
                     system("pause");
@@ -232,13 +230,27 @@ void MakeMenu(){
                 }
             } else if (strcmp(opc2, "2.2") == 0) {
                 printf("2.2 Crear notas para la actividad.\n");
-                // Funcion que lo haga
+                asignarNotas();
+                printf("\n0. Volver al menu principal.\n");
+                printf("  2.2.1 Editar Notas\n");
+                printf("  2.2.2 Eliminar Notas\n");
+                printf("Selecciona una subopción: ");
+                scanf("%s", opc2);
+                if (strcmp(opc2, "2.2.1") == 0) {
+                    printf("2.2.1 Editar Notas.\n");
+                    editNotes();
+                } else if (strcmp(opc2, "2.2.2") == 0) {
+                    printf("2.2.2 Eliminar Notas\n");
+                    deleteNote();
+                } else if (strcmp(opc2, "0") == 0) {
+                    printf("Volver al menu principal.\n");
+                    system("pause");
+                    system("cls");
+                    MakeMenu();
+                }
             } else if (strcmp(opc2, "2.3") == 0) {
-                printf("2.3 Listar estudiantes seleccionado.\n");
-                // Funcion que lo haga
-            } else if (strcmp(opc2, "2.4") == 0) {
-                printf("2.4 Mostrar notas de todos los estudiantes.\n");
-                // Funcion que lo haga
+                printf("2.3 Mostrar notas de todos los estudiantes.\n");
+                imprimirNotas();
             } else {
                 printf("Subopción inválida.\n");
             }
