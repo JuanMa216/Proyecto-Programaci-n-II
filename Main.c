@@ -267,7 +267,7 @@ void MakeMenu(){
                 showNotes();
             } else if (strcmp(opc2, "3.2") == 0) {
                 printf("3.2 Mostrar notas de una materia específica.\n");
-                // Funcion que lo haga
+                showNotesAsign();
             } else {
                 printf("Subopción inválida.\n");
             }
