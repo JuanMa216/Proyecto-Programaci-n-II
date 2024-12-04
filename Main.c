@@ -5,6 +5,7 @@
 #include "Estructuras.c"
 #include "Opcion1.c"
 #include "Opcion2.c"
+#include "Opcion3.c"
 
 void MakeMenu(){
 
@@ -263,7 +264,7 @@ void MakeMenu(){
 
             if (strcmp(opc2, "3.1") == 0) {
                 printf("3.1 Mostrar todas las notas.\n");
-                // Funcion que lo haga
+                showNotes();
             } else if (strcmp(opc2, "3.2") == 0) {
                 printf("3.2 Mostrar notas de una materia específica.\n");
                 // Funcion que lo haga
